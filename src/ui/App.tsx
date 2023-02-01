@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import TodoPage from './pages/TodoPage'
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={'/tasks'} element={<h1>hello world </h1>} />
+        <Route path={'/tasks'} element={<TodoPage />} />
       </Routes>
     </BrowserRouter>
   )
