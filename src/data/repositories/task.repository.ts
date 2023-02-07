@@ -1,9 +1,9 @@
-import { CreateTask, Task } from '../models/types'
+import { Task } from '../models/task'
 
-export abstract class TaskRepository {
-  abstract getAllTasks(): Task[]
-  abstract finTaskById(taskId: number): Task
-  abstract createTask(task: CreateTask): Task
-  abstract updateTask(task: Task): void
-  abstract deleteTask(taskId: number): void
+export interface TaskRepository {
+  getAllTasks(): Promise<Task[]>
+  finTaskById(taskId: number): Promise<Task>
+  createTask(userId: number, title: string): Promise<Task>
+  updateTask(task: Task): Promise<void>
+  deleteTask(taskId: number): Promise<void>
 }
