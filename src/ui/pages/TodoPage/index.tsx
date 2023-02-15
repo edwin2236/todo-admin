@@ -1,6 +1,6 @@
 import { Header } from '../../components'
 import { useTask } from '../../hooks/useTask'
-// enhacement
+
 function TodoPage() {
   const { tasks } = useTask()
 
