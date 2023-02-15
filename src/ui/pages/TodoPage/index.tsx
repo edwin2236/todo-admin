@@ -1,23 +1,13 @@
-import { useEffect, useState } from 'react'
-import { Task } from '../../../data/models/task'
-import { TaskService } from '../../../data/services/task.service'
-import { GetAllTaskUseCase } from '../../../domain'
-import Header from '../../components/Header'
-
+import { Header } from '../../components'
+import { useTask } from '../../hooks/useTask'
+// enhacement
 function TodoPage() {
-  const [data, setData] = useState<Task[]>([])
-  const useCase = new GetAllTaskUseCase(new TaskService())
-
-  useEffect(() => {
-    useCase.call().then((tasks) => {
-      setData(tasks)
-    })
-  }, [])
+  const { tasks } = useTask()
 
   return (
     <>
       <Header />
-      {data.map((item) => (
+      {tasks.map((item) => (
         <div key={item.id}>{item.title}</div>
       ))}
     </>
