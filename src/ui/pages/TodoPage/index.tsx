@@ -4,8 +4,7 @@ import { TaskService } from '../../../data/services/task.service'
 import { GetAllTaskUseCase } from '../../../domain'
 import Header from '../../components/Header'
 
-import { Box } from '@mui/material'
-import { DataGrid } from '@mui/x-data-grid'
+import { Box, Grid, Typography } from '@mui/material'
 
 function TodoPage() {
   
@@ -29,21 +28,15 @@ function TodoPage() {
 
   return (
     <>
-      <Header />
+      <Header /> 
 
-      <Box sx={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', marginTop: '20px'}}>
-        <Box sx={{ height: 371, width: '50%', }}>
-            <DataGrid
-              rows={data}
-              columns={columns}
-              pageSize={5}
-              rowsPerPageOptions={[5]}
-              checkboxSelection
-              disableSelectionOnClick
-              experimentalFeatures={{ newEditingApi: true }}
-            />
-          </Box>
-      </Box>
+      <Grid container spacing={1} sx={{ height: '100%', width: '100%', display: 'flex', justifyContent: 'center', marginTop: '20px'}}>
+        {data.map((item) => (
+          <Grid item xs={6} sx={{border: 1, borderColor: '#7a7979', borderRadius: 1, margin: '2px'}}>
+            <Typography key={item.id}>{item.title}</Typography>
+          </Grid>
+        ))}
+      </Grid>
     </>
   )
 }
