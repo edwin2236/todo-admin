@@ -1,21 +1,10 @@
-import { useEffect, useState } from 'react'
-import { Task } from '../../../data/models/task'
-import { TaskService } from '../../../data/services/task.service'
-import { GetAllTaskUseCase } from '../../../domain'
-import Header from '../../components/Header'
+import { Header } from '../../components'
+import { useTask } from '../../hooks/useTask'
 
 import { Box, Grid, Typography } from '@mui/material'
 
 function TodoPage() {
-  
-  const [data, setData] = useState<Task[]>([])
-  const useCase = new GetAllTaskUseCase(new TaskService())
-
-  useEffect(() => {
-    useCase.call().then((tasks) => {
-      setData(tasks)
-    })
-  }, [])
+  const { tasks } = useTask()
 
   const columns = [
     {
