@@ -21,8 +21,11 @@ export class TaskService implements TaskRepository {
   createTask(userId: number, title: string): Promise<Task> {
     throw new Error('Method not implemented.')
   }
-  updateTask(task: Task): Promise<void> {
-    throw new Error('Method not implemented.')
+  async updateTask(task: Task): Promise<void> {
+    await fetch(`${BASE_URL + Router.todos}/${task.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(task),
+    })
   }
   deleteTask(taskId: number): Promise<void> {
     throw new Error('Method not implemented.')

@@ -1,15 +1,20 @@
+import { ChangeEvent, FC } from 'react'
 import { Checkbox, Grid, Typography } from '@mui/material'
 import Button from '@mui/material-next/Button'
-import { FC } from 'react'
 
 import RemoveIcon from './RemoveIcon'
 
 interface ListItemProps {
   title: string
   completed: boolean
+  onCompleteTask: (status: boolean) => Promise<void>
 }
 
-const ListItem: FC<ListItemProps> = ({ title, completed }) => {
+const ListItem: FC<ListItemProps> = ({ title, completed, onCompleteTask }) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    onCompleteTask(event.target.checked)
+  }
+
   return (
     <Grid
       item
@@ -23,7 +28,7 @@ const ListItem: FC<ListItemProps> = ({ title, completed }) => {
     >
       <Checkbox
         checked={completed}
-        // onChange={handleChange}
+        onChange={handleChange}
         inputProps={{ 'aria-label': 'controlled' }}
       />
       <Typography>{title}</Typography>
